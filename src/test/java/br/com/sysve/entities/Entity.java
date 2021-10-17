@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -18,4 +19,9 @@ public class Entity extends SuperClassEntity{
     private BigDecimal valorVenda;
     private Long codigoBarra;
     private String caminhoImagem;
+    private List<EntityChild> childList;
+    private List<EntityChildWithNoAnnotation> childWithNoAnnotation;
+    @ConverterReferenceField("dtoChildWithNoSameName")
+    private List<EntityChildWithNoSameName> entityChildWithNoSameName;
+    private List<String> nameList;
 }
