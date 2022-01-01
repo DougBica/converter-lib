@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConverterTest {
 
@@ -31,11 +31,11 @@ class ConverterTest {
         entity.setQuantidadeEmbalagem(new BigDecimal("1512"));
         entity.setValorVenda(new BigDecimal("12"));
         dto = dtoIConverter.entityToDto(entity,0);
-        Assertions.assertEquals(dto.getNomeProduto(),entity.getNome());
-        Assertions.assertEquals(dto.getCaminhoImagem(), entity.getCaminhoImagem());
-        Assertions.assertEquals(dto.getQuantidadeEmbalagem(),entity.getQuantidadeEmbalagem());
-        Assertions.assertEquals(dto.getValorVenda(),entity.getValorVenda());
-        Assertions.assertEquals(dto.getCodigoBarra(),entity.getCodigoBarra());
+        assertEquals(dto.getNomeProduto(),entity.getNome());
+        assertEquals(dto.getCaminhoImagem(), entity.getCaminhoImagem());
+        assertEquals(dto.getQuantidadeEmbalagem(),entity.getQuantidadeEmbalagem());
+        assertEquals(dto.getValorVenda(),entity.getValorVenda());
+        assertEquals(dto.getCodigoBarra(),entity.getCodigoBarra());
     }
 
     @Test
@@ -51,12 +51,12 @@ class ConverterTest {
         entity.setUuid(UUID.randomUUID());
         entity.setVersao(10);
         dto = dtoIConverter.entityToDto(entity,1);
-        Assertions.assertEquals(dto.getId(),entity.getId());
-        Assertions.assertEquals(dto.getDataEdicao(),entity.getDataEdicao());
-        Assertions.assertEquals(dto.getDataCadastro(),entity.getDataCadastro());
-        Assertions.assertEquals(dto.getUsuarioEdicao(),entity.getUsuarioEdicao());
-        Assertions.assertEquals(dto.getUuid(),entity.getUuid());
-        Assertions.assertEquals(dto.getVersao(),entity.getVersao());
+        assertEquals(dto.getId(),entity.getId());
+        assertEquals(dto.getDataEdicao(),entity.getDataEdicao());
+        assertEquals(dto.getDataCadastro(),entity.getDataCadastro());
+        assertEquals(dto.getUsuarioEdicao(),entity.getUsuarioEdicao());
+        assertEquals(dto.getUuid(),entity.getUuid());
+        assertEquals(dto.getVersao(),entity.getVersao());
     }
 
     @Test
@@ -73,8 +73,8 @@ class ConverterTest {
         entity.setChildList(childList);
         entity.setNameList(nameList);
         dto = dtoIConverter.entityToDto(entity,1);
-        Assertions.assertEquals(dto.getChildList().get(0).getName(),entity.getChildList().get(0).getName());
-        Assertions.assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
+        assertEquals(dto.getChildList().get(0).getName(),entity.getChildList().get(0).getName());
+        assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
     }
 
     @Test
@@ -92,7 +92,7 @@ class ConverterTest {
         entity.setNameList(nameList);
         dto = dtoIConverter.entityToDto(entity,1);
         Assertions.assertNull(dto.getChildWithNoAnnotation());
-        Assertions.assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
+        assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
     }
 
     @Test
@@ -109,9 +109,9 @@ class ConverterTest {
         entity.setEntityChildWithNoSameName(childList);
         entity.setNameList(nameList);
         dto = dtoIConverter.entityToDto(entity,1);
-        Assertions.assertEquals("ChildName" ,dto.getDtoChildWithNoSameName().get(0).getName());
-        Assertions.assertEquals("ChildName" ,entity.getEntityChildWithNoSameName().get(0).getName());
-        Assertions.assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
+        assertEquals("ChildName" ,dto.getDtoChildWithNoSameName().get(0).getName());
+        assertEquals("ChildName" ,entity.getEntityChildWithNoSameName().get(0).getName());
+        assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
     }
 
     @Test
@@ -161,28 +161,28 @@ class ConverterTest {
 
         dto = dtoIConverter.entityToDto(entity,1);
 
-        Assertions.assertEquals(dto.getNomeProduto(),entity.getNome());
-        Assertions.assertEquals(dto.getCaminhoImagem(), entity.getCaminhoImagem());
-        Assertions.assertEquals(dto.getQuantidadeEmbalagem(),entity.getQuantidadeEmbalagem());
-        Assertions.assertEquals(dto.getValorVenda(),entity.getValorVenda());
-        Assertions.assertEquals(dto.getCodigoBarra(),entity.getCodigoBarra());
+        assertEquals(dto.getNomeProduto(),entity.getNome());
+        assertEquals(dto.getCaminhoImagem(), entity.getCaminhoImagem());
+        assertEquals(dto.getQuantidadeEmbalagem(),entity.getQuantidadeEmbalagem());
+        assertEquals(dto.getValorVenda(),entity.getValorVenda());
+        assertEquals(dto.getCodigoBarra(),entity.getCodigoBarra());
 
-        Assertions.assertEquals(dto.getId(),entity.getId());
-        Assertions.assertEquals(dto.getDataEdicao(),entity.getDataEdicao());
-        Assertions.assertEquals(dto.getDataCadastro(),entity.getDataCadastro());
-        Assertions.assertEquals(dto.getUsuarioEdicao(),entity.getUsuarioEdicao());
-        Assertions.assertEquals(dto.getUuid(),entity.getUuid());
-        Assertions.assertEquals(dto.getVersao(),entity.getVersao());
+        assertEquals(dto.getId(),entity.getId());
+        assertEquals(dto.getDataEdicao(),entity.getDataEdicao());
+        assertEquals(dto.getDataCadastro(),entity.getDataCadastro());
+        assertEquals(dto.getUsuarioEdicao(),entity.getUsuarioEdicao());
+        assertEquals(dto.getUuid(),entity.getUuid());
+        assertEquals(dto.getVersao(),entity.getVersao());
 
-        Assertions.assertEquals(dto.getChildList().get(0).getName(),entity.getChildList().get(0).getName());
-        Assertions.assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
+        assertEquals(dto.getChildList().get(0).getName(),entity.getChildList().get(0).getName());
+        assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
 
         Assertions.assertNull(dto.getChildWithNoAnnotation());
-        Assertions.assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
+        assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
 
-        Assertions.assertEquals("ChildName" ,dto.getDtoChildWithNoSameName().get(0).getName());
-        Assertions.assertEquals("ChildName" ,entity.getEntityChildWithNoSameName().get(0).getName());
-        Assertions.assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
+        assertEquals("ChildName" ,dto.getDtoChildWithNoSameName().get(0).getName());
+        assertEquals("ChildName" ,entity.getEntityChildWithNoSameName().get(0).getName());
+        assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
     }
 
     @Test
@@ -196,11 +196,11 @@ class ConverterTest {
         dto.setQuantidadeEmbalagem(new BigDecimal("1512"));
         dto.setValorVenda(new BigDecimal("12"));
         entity = dtoIConverter.dtoToEntity(dto,0);
-        Assertions.assertEquals(dto.getNomeProduto(),entity.getNome());
-        Assertions.assertEquals(dto.getCaminhoImagem(),entity.getCaminhoImagem());
-        Assertions.assertEquals(dto.getQuantidadeEmbalagem(),entity.getQuantidadeEmbalagem());
-        Assertions.assertEquals(dto.getValorVenda(),entity.getValorVenda());
-        Assertions.assertEquals(dto.getCodigoBarra(),entity.getCodigoBarra());
+        assertEquals(dto.getNomeProduto(),entity.getNome());
+        assertEquals(dto.getCaminhoImagem(),entity.getCaminhoImagem());
+        assertEquals(dto.getQuantidadeEmbalagem(),entity.getQuantidadeEmbalagem());
+        assertEquals(dto.getValorVenda(),entity.getValorVenda());
+        assertEquals(dto.getCodigoBarra(),entity.getCodigoBarra());
     }
 
     @Test
@@ -216,12 +216,12 @@ class ConverterTest {
         dto.setUuid(UUID.randomUUID());
         dto.setVersao(10);
         entity = dtoIConverter.dtoToEntity(dto,0);
-        Assertions.assertEquals(dto.getId(),entity.getId());
-        Assertions.assertEquals(dto.getDataEdicao(),entity.getDataEdicao());
-        Assertions.assertEquals(dto.getDataCadastro(),entity.getDataCadastro());
-        Assertions.assertEquals(dto.getUsuarioEdicao(),entity.getUsuarioEdicao());
-        Assertions.assertEquals(dto.getUuid(),entity.getUuid());
-        Assertions.assertEquals(dto.getVersao(),entity.getVersao());
+        assertEquals(dto.getId(),entity.getId());
+        assertEquals(dto.getDataEdicao(),entity.getDataEdicao());
+        assertEquals(dto.getDataCadastro(),entity.getDataCadastro());
+        assertEquals(dto.getUsuarioEdicao(),entity.getUsuarioEdicao());
+        assertEquals(dto.getUuid(),entity.getUuid());
+        assertEquals(dto.getVersao(),entity.getVersao());
     }
 
     @Test
@@ -237,8 +237,8 @@ class ConverterTest {
         dto.setChildList(childList);
         dto.setNameList(nameList);
         Entity entity = entityIConverter.dtoToEntity(dto,1);
-        Assertions.assertEquals(entity.getChildList().get(0).getName(),dto.getChildList().get(0).getName());
-        Assertions.assertEquals(entity.getNameList().get(0),dto.getNameList().get(0));
+        assertEquals(entity.getChildList().get(0).getName(),dto.getChildList().get(0).getName());
+        assertEquals(entity.getNameList().get(0),dto.getNameList().get(0));
     }
 
     @Test
@@ -256,7 +256,7 @@ class ConverterTest {
         dto.setNameList(nameList);
         entity = entityConverter.dtoToEntity(dto,1);
         Assertions.assertNull(entity.getChildWithNoAnnotation());
-        Assertions.assertEquals(entity.getNameList().get(0),dto.getNameList().get(0));
+        assertEquals(entity.getNameList().get(0),dto.getNameList().get(0));
     }
 
     @Test
@@ -273,9 +273,9 @@ class ConverterTest {
         dto.setDtoChildWithNoSameName(childList);
         dto.setNameList(nameList);
         entity = dtoIConverter.dtoToEntity(dto,1);
-        Assertions.assertEquals("ChildName" ,dto.getDtoChildWithNoSameName().get(0).getName());
-        Assertions.assertEquals("ChildName" ,entity.getEntityChildWithNoSameName().get(0).getName());
-        Assertions.assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
+        assertEquals("ChildName" ,dto.getDtoChildWithNoSameName().get(0).getName());
+        assertEquals("ChildName" ,entity.getEntityChildWithNoSameName().get(0).getName());
+        assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
     }
 
     @Test
@@ -326,27 +326,27 @@ class ConverterTest {
 
         entity = dtoIConverter.dtoToEntity(dto,1);
 
-        Assertions.assertEquals(dto.getNomeProduto(),entity.getNome());
-        Assertions.assertEquals(dto.getCaminhoImagem(),entity.getCaminhoImagem());
-        Assertions.assertEquals(dto.getQuantidadeEmbalagem(),entity.getQuantidadeEmbalagem());
-        Assertions.assertEquals(dto.getValorVenda(),entity.getValorVenda());
-        Assertions.assertEquals(dto.getCodigoBarra(),entity.getCodigoBarra());
+        assertEquals(dto.getNomeProduto(),entity.getNome());
+        assertEquals(dto.getCaminhoImagem(),entity.getCaminhoImagem());
+        assertEquals(dto.getQuantidadeEmbalagem(),entity.getQuantidadeEmbalagem());
+        assertEquals(dto.getValorVenda(),entity.getValorVenda());
+        assertEquals(dto.getCodigoBarra(),entity.getCodigoBarra());
 
-        Assertions.assertEquals(dto.getId(),entity.getId());
-        Assertions.assertEquals(dto.getDataEdicao(),entity.getDataEdicao());
-        Assertions.assertEquals(dto.getDataCadastro(),entity.getDataCadastro());
-        Assertions.assertEquals(dto.getUsuarioEdicao(),entity.getUsuarioEdicao());
-        Assertions.assertEquals(dto.getUuid(),entity.getUuid());
-        Assertions.assertEquals(dto.getVersao(),entity.getVersao());
+        assertEquals(dto.getId(),entity.getId());
+        assertEquals(dto.getDataEdicao(),entity.getDataEdicao());
+        assertEquals(dto.getDataCadastro(),entity.getDataCadastro());
+        assertEquals(dto.getUsuarioEdicao(),entity.getUsuarioEdicao());
+        assertEquals(dto.getUuid(),entity.getUuid());
+        assertEquals(dto.getVersao(),entity.getVersao());
 
-        Assertions.assertEquals(entity.getChildList().get(0).getName(),dto.getChildList().get(0).getName());
-        Assertions.assertEquals(entity.getNameList().get(0),dto.getNameList().get(0));
+        assertEquals(entity.getChildList().get(0).getName(),dto.getChildList().get(0).getName());
+        assertEquals(entity.getNameList().get(0),dto.getNameList().get(0));
 
         Assertions.assertNull(entity.getChildWithNoAnnotation());
-        Assertions.assertEquals(entity.getNameList().get(0),dto.getNameList().get(0));
+        assertEquals(entity.getNameList().get(0),dto.getNameList().get(0));
 
-        Assertions.assertEquals("ChildName" ,dto.getDtoChildWithNoSameName().get(0).getName());
-        Assertions.assertEquals("ChildName" ,entity.getEntityChildWithNoSameName().get(0).getName());
-        Assertions.assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
+        assertEquals("ChildName" ,dto.getDtoChildWithNoSameName().get(0).getName());
+        assertEquals("ChildName" ,entity.getEntityChildWithNoSameName().get(0).getName());
+        assertEquals(dto.getNameList().get(0),entity.getNameList().get(0));
     }
 }
